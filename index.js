@@ -100,45 +100,45 @@ response.status(200).send({"message":"succefully created",data} )
 
 
 
-const secret = process.env.secretekey
-const token= Jwt.sign({_id:data.insertedId},secret,{
-  expiresIn:"5m"
+// const secret = process.env.secretekey
+// const token= Jwt.sign({_id:data.insertedId},secret,{
+//   expiresIn:"5m"
 
-})
-const activationslinks = `http://localhost:5173/users/activation?id=${data.insertedId}&token=${token}`
-console.log(activationslinks) 
+// })
+// const activationslinks = `http://localhost:5173/users/activation?id=${data.insertedId}&token=${token}`
+// console.log(activationslinks) 
 
 
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
+//   // create reusable transporter object using the default SMTP transport
+//   let transporter = nodemailer.createTransport({
   
-    service:"gmail",
-     auth: {
-       user: "syed0333800@gmail.com", // generated ethereal user
-       pass: process.env.GPASS, // generated ethereal password
-     },
-   });
+//     service:"gmail",
+//      auth: {
+//        user: "syed0333800@gmail.com", // generated ethereal user
+//        pass: process.env.GPASS, // generated ethereal password
+//      },
+//    });
  
- var mailoption ={
-   from: 'Unknow Co LTD PVT', // sender address
-   to: email, // list of receivers
-   subject: "Activation Link✔", // Subject line
-   text: activationslinks,
- }
- 
- 
-   // send mail with defined transport object
-   transporter.sendMail(mailoption, function (err,info){
- if(err){
-   console.log(err);
- }
- else{
-   console.log("email sent",info.response);
- }
+//  var mailoption ={
+//    from: 'Unknow Co LTD PVT', // sender address
+//    to: email, // list of receivers
+//    subject: "Activation Link✔", // Subject line
+//    text: activationslinks,
+//  }
  
  
+//    // send mail with defined transport object
+//    transporter.sendMail(mailoption, function (err,info){
+//  if(err){
+//    console.log(err);
+//  }
+//  else{
+//    console.log("email sent",info.response);
+//  }
  
-   })
+ 
+ 
+//    })
 
 
 
@@ -152,33 +152,33 @@ console.log(activationslinks)
 });
 
 //  activations
-app.post("/users/activation",auth, async function (request, response) {
+// app.post("/users/activation",auth, async function (request, response) {
 
 
 
-const {id,token} =request.query
+// const {id,token} =request.query
 
-try{
-  const activate = await client
-  .db('userdata')
-  .collection('userdetails')
-  .updateOne({_id: new ObjectId(id)} ,{$set:{Verified:"true"}} )
+// try{
+//   const activate = await client
+//   .db('userdata')
+//   .collection('userdetails')
+//   .updateOne({_id: new ObjectId(id)} ,{$set:{Verified:"true"}} )
   
-  // .updateOne({ _id: new ObjectId(id) }, { $set: {password:encryptpassword,random:""} });
+//   // .updateOne({ _id: new ObjectId(id) }, { $set: {password:encryptpassword,random:""} });
   
-  response.status(200).send({"message":"succcessfully Activated",activate })
-  console.log(activate);
-}  
-catch(err){
-  response.status(401).send({"message":"Something Went Wrong"})
+//   response.status(200).send({"message":"succcessfully Activated",activate })
+//   console.log(activate);
+// }  
+// catch(err){
+//   response.status(401).send({"message":"Something Went Wrong"})
 
-}
-
-
+// }
 
 
 
-});
+
+
+// });
 
 
 // get all user
@@ -210,10 +210,10 @@ if(!userfromdb ){
 
   response.send({"message": "invalid userdata"})
 }
-else if(userfromdb.Verified !== "true" ){
+// else if(userfromdb.Verified !== "true" ){
 
-  response.status(401).send({"message": "Account not Activated Activate Link Sent on Register Email "})
-}
+//   response.status(401).send({"message": "Account not Activated Activate Link Sent on Register Email "})
+// }
 
 else{
   
