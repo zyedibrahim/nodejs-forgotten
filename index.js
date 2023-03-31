@@ -306,7 +306,7 @@ const links = `http://localhost:5173/users/reset-password?id=${olduser._id}&toke
 
 var mailoption ={
   from: 'syed0333800@gmail.com', // sender address
-  to: "zyedibrahim77@gmail.com", // list of receivers
+  to: email, // list of receivers
   subject: "reset password✔", // Subject line
   text: links,
 }
